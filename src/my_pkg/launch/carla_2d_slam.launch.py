@@ -20,7 +20,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'bag_rate',
-            default_value='0.3',
+            default_value='1.0',
             description='Rosbag playback rate',
         ),
         DeclareLaunchArgument(
@@ -37,7 +37,7 @@ def generate_launch_description():
         # Replay bag-recorded /clock only (do not use --clock) to avoid duplicate publishers.
         ExecuteProcess(
             cmd=[
-                'ros2', 'bag', 'play', bag_path, '-r', bag_rate, '-l',
+                'ros2', 'bag', 'play', bag_path, '-r', bag_rate,
                 '--topics',
                 '/clock',
                 '/carla/hero/lidar',
@@ -85,8 +85,8 @@ def generate_launch_description():
                 'transform_tolerance': 0.2,
                 'min_height': -0.5,
                 'angle_min': -3.14159,
-                'max_height': 0.5,
                 'angle_max': 3.14159,
+                'max_height': 0.5,
                 'angle_increment': 0.0087,
                 'range_min': 1.0,
                 'range_max': 50.0,
@@ -112,7 +112,7 @@ def generate_launch_description():
                 'publish_map_to_odom_transform': True,
                 'transform_timeout': 0.2,
                 'tf_buffer_duration': 30.0,
-                'minimum_laser_range': 1.0,
+                'min_laser_range': 1.0,
             }],
         ),
 
